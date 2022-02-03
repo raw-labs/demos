@@ -12,7 +12,7 @@ make_dates(yearmonth: string) := {
 
 weather_history_hourly(locationname: string, yearmonth: string) :={
   
-  key=secret("meteosource.com");
+  key:=secret("meteosource.com");
   place_id:= CFIRST(find_places(locationname, key)).place_id;
 
   SELECT 
