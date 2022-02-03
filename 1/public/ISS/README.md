@@ -17,4 +17,6 @@ This endpoint returns the ISS nearest location on earth.
 ## `isslocation()`
 Returns the closest location (city/county) from the ISS position.
 
+## `isslocationosm()`
+Returns a link to the ISS location on OpenStreetMap.
 

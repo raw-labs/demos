@@ -8,9 +8,13 @@ from `github://raw-labs/lib/1/public/open-notify.org/open-notify.rql` import iss
 
 
 isslocation() := {
+    geo := geocode( secret("opencagedata.com"),
+             iss_location_1sec().iss_position.longitude+","+iss_location_1sec().iss_position.latitude )
+    cfirst(geo.results).formatted
+}
 
-    geocode( secret("opencagedata.com"),
-             iss_location_1sec().iss_position.longitude+","+iss_location_1sec().iss_position.latitude 
-             )
-
+isslocationosm() := {
+    geo := geocode( secret("opencagedata.com"),
+             iss_location_1sec().iss_position.longitude+","+iss_location_1sec().iss_position.latitude )
+    cfirst(geo.results).annotations.OSM.url
 }
