@@ -6,9 +6,9 @@ codeFile: code.rql
 format: json
 computeClass: normal
 enabled: true
-declaration: isslocation
+declaration: isslocationosm
 metadata:
-  title: ISS location
+  title: ISS location on OpenStreetMap
   description: Locate the ISS position above earth
   tags:
     - ISS
