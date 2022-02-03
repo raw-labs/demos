@@ -7,7 +7,7 @@ make_dates(yearmonth: string) := {
     m := CAST(substring(yearmonth,6,2) as int);
     
     SELECT DISTINCT TO_DATE(CAST((m * 100) + (y * 10000) + * as string),"yyyyMMdd") 
-    FROM RANGE(1,3) 
+    FROM RANGE(1,32) 
 };
 
 weather_history_hourly(locationname: string, yearmonth: string) :={
