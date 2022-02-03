@@ -1,0 +1,18 @@
+raw: 0.9
+endpoint: GET
+code: rql
+codeFile: weather.rql
+format: csv
+computeClass: normal
+enabled: true
+cacheSizeMB: 100
+computeLimitSeconds: 10
+refreshSeconds: 86400
+declaration: weather_history_hourly
+metadata:
+  title: Historical Weather, hourly, for a location
+  description: Times are Local, Units are metric
+  tags:
+    - weather
+security:
+  public: true

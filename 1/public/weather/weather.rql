@@ -1,0 +1,29 @@
+FROM `github://raw-labs/lib/1/public/meteosource.com/meteosource.rql` 
+  IMPORT time_machine, find_places, nearest_place;
+
+make_dates(yearmonth: string) := {
+
+    y := CAST(substring(yearmonth,1,4) as int);
+    m := CAST(substring(yearmonth,6,2) as int);
+    
+    SELECT DISTINCT TO_DATE(CAST((m * 100) + (y * 10000) + * as string),"yyyyMMdd") 
+    FROM RANGE(1,3) 
+};
+
+weather_history_hourly(name: string, yearmonth: string, key: string) :={
+  
+  place_id:= CFIRST(find_places(name, key)).place_id;
+
+  SELECT 
+    w.date, 
+    w.temperature, 
+    w.precipitation.total as precipitation, 
+    w.precipitation.type as precipitation_type, 
+    w.wind.speed as wind_speed,
+    ROUND(13.12 + (0.6215 * w.temperature) - (11.37 * POWER(w.wind.speed,0.16)) + 
+      (0.3965 * w.temperature * POWER(w.wind.speed,0.16)),1) as wind_chill
+  FROM 
+    make_dates(yearmonth) d,
+    time_machine(place_id:=place_id, date:=d, key:=key, units:="metric").data as w
+
+};
