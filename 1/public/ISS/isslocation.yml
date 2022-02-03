@@ -6,8 +6,6 @@ codeFile: code.rql
 format: json
 computeClass: normal
 enabled: true
-cacheSizeMB: 200
-computeLimitSeconds: 10
 declaration: isslocation
 metadata:
   title: ISS location
