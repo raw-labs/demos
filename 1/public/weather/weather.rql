@@ -10,9 +10,10 @@ make_dates(yearmonth: string) := {
     FROM RANGE(1,3) 
 };
 
-weather_history_hourly(name: string, yearmonth: string, key: string) :={
+weather_history_hourly(locationname: string, yearmonth: string) :={
   
-  place_id:= CFIRST(find_places(name, key)).place_id;
+  key=secret("meteosource.com");
+  place_id:= CFIRST(find_places(locationname, key)).place_id;
 
   SELECT 
     w.date, 
