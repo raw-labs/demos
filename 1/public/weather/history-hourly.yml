@@ -11,7 +11,7 @@ refreshSeconds: 86400
 declaration: weather_history_hourly
 metadata:
   title: Historical Weather, hourly, for a location
-  description: Times are Local, Units are metric
+  description: Times are UTC, Units are metric
   tags:
     - weather
 security:

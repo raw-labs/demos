@@ -1,22 +1,45 @@
 FROM `github://raw-labs/lib/1/public/meteosource.com/meteosource.rql` 
   IMPORT time_machine, find_places, nearest_place;
+FROM `github://raw-labs/lib/1/public/google.com/maps.rql` 
+  IMPORT timezone, geocode;
+
 
 make_dates(yearmonth: string) := {
-
-    y := CAST(substring(yearmonth,1,4) as int);
-    m := CAST(substring(yearmonth,6,2) as int);
+  // create dates for a calendar month
+  y := CAST(substring(yearmonth,1,4) as int);
+  m := CAST(substring(yearmonth,6,2) as int);
     
-    SELECT DISTINCT TO_DATE(CAST((m * 100) + (y * 10000) + * as string),"yyyyMMdd") 
-    FROM RANGE(1,32) 
+  SELECT DISTINCT TO_DATE(CAST((m * 100) + (y * 10000) + * as string),"yyyyMMdd") 
+  FROM RANGE(1,32) 
 };
 
-weather_history_hourly(locationname: string, yearmonth: string) :={
+// convert a UTC timestamp into a Local timestamp based on location
+convert_utc_to_local(inputTs: timestamp, location: string) := {
+ key:=secret("maps.google.com");
+
+ coord:=cfirst(geocode(location,key).results).geometry.location;
+ unixTs:=cast(unix_timestamp(inputTs) as int);
+ 
+ tz:= timezone( cast(coord.lat as string)+ "," + cast(coord.lng as string),unixTs,key);
+
+ // awaiting bugfix
+ from_unixtime(unixTs + tz.rawOffset )
+ //from_unixtime(unixTs + tz.rawOffset +tz.dstOffset)
+};
+
+
+weather_history_hourly(locationname: string, yearmonth: string, inlocaltime: bool := false ) :={
   
   key:=secret("meteosource.com");
   place_id:= CFIRST(find_places(locationname, key)).place_id;
 
+  // time_machine returns UTC datetime
   SELECT 
-    w.date as datetime, 
+    CASE inlocaltime 
+      WHEN true 
+      THEN convert_utc_to_local( to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s"), locationname)
+      ELSE to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s") 
+    END as datetime, 
     w.temperature, 
     w.precipitation.total as precipitation, 
     w.precipitation.type as precipitation_type, 
@@ -28,7 +51,6 @@ weather_history_hourly(locationname: string, yearmonth: string) :={
     time_machine(place_id:=place_id, date:=d, key:=key, units:="metric").data as w
 
 };
-
 
 weather_history_daily(locationname: string, yearmonth: string) :={
   
@@ -45,9 +67,9 @@ weather_history_daily(locationname: string, yearmonth: string) :={
     max(feels_like) as max_feels_like,
     round(avg(feels_like),1) as avg_feels_like
   FROM    
-    weather_history_hourly(locationname, yearmonth)
+    weather_history_hourly(locationname, yearmonth,false)
   GROUP BY 
-    substring(datetime,1,10) as date
+    cast ( datetime as date ) as date
   ORDER BY 1
 
 };
