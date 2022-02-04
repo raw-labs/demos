@@ -1,5 +1,5 @@
 ![RAW Labs](https://avatars.githubusercontent.com/u/11390046?s=100&v=4)
-# Examples Data Products
+# Example Data Products
 
 The following are data products examples built using RAW. More detail and the code is available within these sub-directories<p>
 
@@ -8,8 +8,8 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Movies](./1/public/movies)
 * [Olympic Games](./1/public/olympic-games)
 * [Recently Updated Sitemap Pages](./1/public/sitemap)
-* [Value at Risk](./1/public/value-at-risk)
 * [ISS](./1/public/ISS)
+* [Weather](./1/public/weather)
 
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
@@ -41,15 +41,6 @@ Retrieve last updated web pages from a website sitemap:
 
 https://api.raw-labs.com/examples/1/public/sitemap/recentpages?website=https://virgingalactic.com
  
-## [Value at Risk](./1/public/value-at-risk)
-  
-Example showing resource-intensive data products involving calculations on sizeable data:
-
-https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^DJI - Dow Jones 30 stocks
-
-https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^GSPC - S&P 500 stocks
-
-https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^IXIC - Nasdaq 100 stocks
   
 ## [ISS](./1/public/ISS)
   
@@ -59,3 +50,17 @@ This example shows the location of the ISS (space station) location, now:
 https://api.raw-labs.com/examples/1/public/ISS/isslocation
 
 https://api.raw-labs.com/examples/1/public/ISS/isslocationosm
+  
+  
+## [Weather](./1/public/weather)
+  Layering on top of a weather provider, in this case meteosource.com
+
+  Our End Points perform calculations of Feels Like, plus aggregate where no aggregations exist
+
+  UTC to Local Time is coming too.
+
+Daily History:
+  https://api.raw-labs.com/examples/1/public/weather/history-daily?locationname=london&yearmonth=2022-01
+
+Hourly History:
+  https://api.raw-labs.com/examples/1/public/weather/history-hourly?locationname=london&yearmonth=2022-01
