@@ -8,7 +8,6 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Movies](./1/public/movies)
 * [Olympic Games](./1/public/olympic-games)
 * [Recently Updated Sitemap Pages](./1/public/sitemap)
-* [Value at Risk](./1/public/value-at-risk)
 * [ISS](./1/public/ISS)
 * [Weather](./1/public/weather)
 
@@ -42,15 +41,6 @@ Retrieve last updated web pages from a website sitemap:
 
 https://api.raw-labs.com/examples/1/public/sitemap/recentpages?website=https://virgingalactic.com
  
-## [Value at Risk](./1/public/value-at-risk)
-  
-Example showing resource-intensive data products involving calculations on sizeable data:
-
-https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^DJI - Dow Jones 30 stocks
-
-https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^GSPC - S&P 500 stocks
-
-https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^IXIC - Nasdaq 100 stocks
   
 ## [ISS](./1/public/ISS)
   
