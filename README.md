@@ -10,7 +10,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Recently Updated Sitemap Pages](./1/public/sitemap)
 * [Value at Risk](./1/public/value-at-risk)
 * [ISS](./1/public/ISS)
-* [Weather](./public/weather)
+* [Weather](./1/public/weather)
 
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
