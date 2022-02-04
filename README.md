@@ -66,5 +66,9 @@ https://api.raw-labs.com/examples/1/public/ISS/isslocationosm
 Layering on top of a weather provider, in this case meteosource.com
 Our End Points perform calculations of Feels Like, plus aggregate where no aggregations exist
 UTC to Local Time is coming too.
+
+Daily History:
 https://api.raw-labs.com/examples/1/public/weather/history-daily?locationname=london&yearmonth=2022-01
+
+Hourly History:
 https://api.raw-labs.com/examples/1/public/weather/history-hourly?locationname=london&yearmonth=2022-01
