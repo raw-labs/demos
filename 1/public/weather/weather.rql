@@ -16,15 +16,38 @@ weather_history_hourly(locationname: string, yearmonth: string) :={
   place_id:= CFIRST(find_places(locationname, key)).place_id;
 
   SELECT 
-    w.date, 
+    w.date as datetime, 
     w.temperature, 
     w.precipitation.total as precipitation, 
     w.precipitation.type as precipitation_type, 
     w.wind.speed as wind_speed,
     ROUND(13.12 + (0.6215 * w.temperature) - (11.37 * POWER(w.wind.speed,0.16)) + 
-      (0.3965 * w.temperature * POWER(w.wind.speed,0.16)),1) as wind_chill
+      (0.3965 * w.temperature * POWER(w.wind.speed,0.16)),1) as feels_like
   FROM 
     make_dates(yearmonth) d,
     time_machine(place_id:=place_id, date:=d, key:=key, units:="metric").data as w
+
+};
+
+
+weather_history_daily(locationname: string, yearmonth: string) :={
+  
+  SELECT 
+    date,
+    min(temperature) as min_temperature,
+    max(temperature) as max_temperature,
+    round(avg(temperature),1) as avg_temperature,
+    sum(precipitation) as total_precipitation,
+    min(wind_speed) as min_wind_speed,
+    max(wind_speed) as max_wind_speed,
+    round(avg(wind_speed),1) as avg_wind_speed,
+    min(feels_like) as min_feels_like,
+    max(feels_like) as max_feels_like,
+    round(avg(feels_like),1) as avg_feels_like
+  FROM    
+    weather_history_hourly(locationname, yearmonth)
+  GROUP BY 
+    substring(datetime,1,10) as date
+  ORDER BY 1
 
 };
