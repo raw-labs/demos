@@ -10,7 +10,9 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Recently Updated Sitemap Pages](./1/public/sitemap)
 * [ISS](./1/public/ISS)
 * [Weather](./1/public/weather)
-
+* [Value at Risk](./1/public/value-at-risk)
+* [New York Transit](./1/public/nyc-transit)
+  
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
 
@@ -64,3 +66,21 @@ Daily History:
 
 Hourly History:
   https://api.raw-labs.com/examples/1/public/weather/history-hourly?locationname=london&yearmonth=2022-01
+
+ 
+## [Value at Risk](./1/public/value-at-risk)
+  
+Example showing resource-intensive data products involving calculations on sizeable data:
+
+https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^DJI - Dow Jones 30 stocks
+
+https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^GSPC - S&P 500 stocks
+
+https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^IXIC - Nasdaq 100 stocks
+
+## [New York Transit](./1/public/nyc/mass-transit)
+  
+Our good friend the New York TLC data set, we show how to query with RAW, and adding MTA data too:
+  
+https://api.raw-labs.com/examples/1/public/nyc-transit/trips?yearmonth=2021-07
+
