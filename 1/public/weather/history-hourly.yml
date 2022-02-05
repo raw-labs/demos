@@ -6,7 +6,7 @@ format: csv
 computeClass: normal
 enabled: true
 cacheSizeMB: 100
-computeLimitSeconds: 10
+computeLimitSeconds: 30
 refreshSeconds: 86400
 declaration: weather_history_hourly
 metadata:
