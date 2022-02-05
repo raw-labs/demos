@@ -15,17 +15,15 @@ make_dates(yearmonth: string) := {
 
 // convert a UTC timestamp into a Local timestamp based on location
 convert_utc_to_local(inputTs: timestamp, location: string) := {
- key:=secret("maps.google.com");
-
- coord:=cfirst(geocode(location,key).results).geometry.location;
- unixTs:=cast(unix_timestamp(inputTs) as int);
- 
- tz:= timezone( cast(coord.lat as string)+ "," + cast(coord.lng as string),unixTs,key);
-
- // awaiting bugfix
- from_unixtime(unixTs + tz.rawOffset )
- //from_unixtime(unixTs + tz.rawOffset +tz.dstOffset)
-};
+ key := secret("maps.google.com");
+ unixTs := cast(unix_timestamp(inputTs) as int);
+  SELECT FIRST(uTime)
+  FROM geocode(location,key).results AS r,
+    r.geometry.location AS coord,
+    timezone(cast(coord.lat as string)
+        + "," + cast(coord.lng as string), unixTs, key) AS tz,
+    from_unixtime(unixTs-tz.rawOffset-tz.dstOffset) AS uTime
+ };
 
 
 weather_history_hourly(locationname: string, yearmonth: string, inlocaltime: bool := false ) :={
