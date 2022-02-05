@@ -13,31 +13,51 @@ make_dates(yearmonth: string) := {
   FROM RANGE(1,32) 
 };
 
-// convert a UTC timestamp into a Local timestamp based on location
-convert_utc_to_local(inputTs: timestamp, location: string) := {
- key := secret("maps.google.com");
- unixTs := cast(unix_timestamp(inputTs) as int);
-  SELECT FIRST(uTime)
-  FROM geocode(location,key).results AS r,
-    r.geometry.location AS coord,
-    timezone(cast(coord.lat as string)
-        + "," + cast(coord.lng as string), unixTs, key) AS tz,
-    from_unixtime(unixTs-tz.rawOffset-tz.dstOffset) AS uTime
+// convert a UTC timestamp into a local timestamp based on location
+convert_utc_to_local(inputTs: timestamp, latlong: string) := {
+  key := secret("maps.google.com");
+  unixTs := cast(unix_timestamp(inputTs) as int);
+  tz := timezone(latlong, unixTs, key);
+  // Google API may not find location
+  CASE tz.status
+    WHEN "OK" THEN from_unixtime(unixTs+tz.rawOffset+tz.dstOffset)
+    ELSE null
+  END
  };
 
-
-weather_history_hourly(locationname: string, yearmonth: string, inlocaltime: bool := false ) :={
+weather_history_hourly(locationname: string, yearmonth: string) :={
+  // hourly weather in UTC time
   
+  // meteosource needs a place id
   key:=secret("meteosource.com");
   place_id:= CFIRST(find_places(locationname, key)).place_id;
 
-  // time_machine returns UTC datetime
   SELECT 
-    CASE inlocaltime 
-      WHEN true 
-      THEN convert_utc_to_local( to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s"), locationname)
-      ELSE to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s") 
-    END as datetime, 
+    to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s")  as datetime, 
+    w.temperature, 
+    w.precipitation.total as precipitation, 
+    w.precipitation.type as precipitation_type, 
+    w.wind.speed as wind_speed,
+    ROUND(13.12 + (0.6215 * w.temperature) - (11.37 * POWER(w.wind.speed,0.16)) + 
+      (0.3965 * w.temperature * POWER(w.wind.speed,0.16)),1) as feels_like
+  FROM 
+    make_dates(yearmonth) d,
+    time_machine(place_id:=place_id, date:=d, key:=key, units:="metric").data as w
+
+};
+
+weather_history_hourly_local(locationname: string, yearmonth: string) :={
+
+  // lat&long coordinates from location
+  coord:=cfirst(geocode(locationname,secret("maps.google.com")).results).geometry.location;
+  // meteosource needs a place id
+  key:=secret("meteosource.com");
+  place_id:= CFIRST(find_places(locationname, key)).place_id;
+  
+  // time_machine returns UTC datetime, convert to local if needed
+  SELECT 
+    convert_utc_to_local( to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s"), cast(coord.lat as string)
+        + "," + cast(coord.lng as string) ) as datetime, 
     w.temperature, 
     w.precipitation.total as precipitation, 
     w.precipitation.type as precipitation_type, 
@@ -51,7 +71,7 @@ weather_history_hourly(locationname: string, yearmonth: string, inlocaltime: boo
 };
 
 weather_history_daily(locationname: string, yearmonth: string) :={
-  
+  // group up hourly temps (using local time)
   SELECT 
     date,
     min(temperature) as min_temperature,
@@ -65,7 +85,7 @@ weather_history_daily(locationname: string, yearmonth: string) :={
     max(feels_like) as max_feels_like,
     round(avg(feels_like),1) as avg_feels_like
   FROM    
-    weather_history_hourly(locationname, yearmonth,false)
+    weather_history_hourly_local(locationname, yearmonth)
   GROUP BY 
     cast ( datetime as date ) as date
   ORDER BY 1
