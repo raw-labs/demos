@@ -6,12 +6,12 @@ format: csv
 computeClass: normal
 enabled: true
 cacheSizeMB: 100
-computeLimitSeconds: 30
+computeLimitSeconds: 10
 refreshSeconds: 86400
 declaration: weather_history_hourly
 metadata:
-  title: Historical Weather, hourly, for a location
-  description: Times are UTC, Units are metric
+  title: Historical Weather, hourly for one calendar month
+  description: Units are metric, location specific
   tags:
     - weather
 security:

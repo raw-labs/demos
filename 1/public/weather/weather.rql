@@ -1,93 +1,51 @@
-FROM `github://raw-labs/lib/1/public/meteosource.com/meteosource.rql` 
-  IMPORT time_machine, find_places, nearest_place;
-FROM `github://raw-labs/lib/1/public/google.com/maps.rql` 
-  IMPORT timezone, geocode;
+FROM `github://raw-labs/lib/1/public/visualcrossing.com/weather.rql` 
+  IMPORT timeline;
 
+weather_history_hourly(location: string, yearmonth: string) :={
+  // hourly weather in local time for one month
+  key:=secret("weather.visualcrossing.com");
+  date1 := to_date (yearmonth + "-01", "yyyy-MM-dd");
+  date2 := cast(date1 + interval "1 month" - interval "1 days" as date);
+  res := timeline(secret("weather.visualcrossing.com"), location, date1 ,date2, unitGroup:="metric");
 
-make_dates(yearmonth: string) := {
-  // create dates for a calendar month
-  y := CAST(substring(yearmonth,1,4) as int);
-  m := CAST(substring(yearmonth,6,2) as int);
-    
-  SELECT DISTINCT TO_DATE(CAST((m * 100) + (y * 10000) + * as string),"yyyyMMdd") 
-  FROM RANGE(1,32) 
-};
-
-// convert a UTC timestamp into a local timestamp based on location
-convert_utc_to_local(inputTs: timestamp, latlong: string) := {
-  key := secret("maps.google.com");
-  unixTs := cast(unix_timestamp(inputTs) as int);
-  tz := timezone(latlong, unixTs, key);
-  // Google API may not find location
-  CASE tz.status
-    WHEN "OK" THEN from_unixtime(unixTs+tz.rawOffset+tz.dstOffset)
-    ELSE null
-  END
- };
-
-weather_history_hourly(locationname: string, yearmonth: string) :={
-  // hourly weather in UTC time
-  
-  // meteosource needs a place id
-  key:=secret("meteosource.com");
-  place_id:= CFIRST(find_places(locationname, key)).place_id;
-
+  // this is too slow when ading res.xxx fields - why?
   SELECT 
-    to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s")  as datetime, 
-    w.temperature, 
-    w.precipitation.total as precipitation, 
-    w.precipitation.type as precipitation_type, 
-    w.wind.speed as wind_speed,
-    ROUND(13.12 + (0.6215 * w.temperature) - (11.37 * POWER(w.wind.speed,0.16)) + 
-      (0.3965 * w.temperature * POWER(w.wind.speed,0.16)),1) as feels_like
-  FROM 
-    make_dates(yearmonth) d,
-    time_machine(place_id:=place_id, date:=d, key:=key, units:="metric").data as w
+    to_date(d.datetime,"yyyy-MM-dd") + to_time( h.datetime, "H:m:s") as datehour,
+    from_unixtime(h.datetimeEpoch) as datehourUTC,
+    h.precip, 
+    h.temp,
+    h.feelslike,
+    h.snow,
+    h.snowdepth,
+    h.windspeed,
+    h.windgust
+   FROM 
+    res.days as d, 
+    d.hours as h
 
 };
 
-weather_history_hourly_local(locationname: string, yearmonth: string) :={
+weather_history_daily(location: string, yearmonth: string) :={
+  // daily weather in local time for one month
+  key:=secret("weather.visualcrossing.com");
+  date1 := to_date (yearmonth + "-01", "yyyy-MM-dd");
+  date2 := cast(date1 + interval "1 month" - interval "1 days" as date);
+  res := timeline(secret("weather.visualcrossing.com"), location, date1 ,date2, unitGroup:="metric");
 
-  // lat&long coordinates from location
-  coord:=cfirst(geocode(locationname,secret("maps.google.com")).results).geometry.location;
-  // meteosource needs a place id
-  key:=secret("meteosource.com");
-  place_id:= CFIRST(find_places(locationname, key)).place_id;
-  
-  // time_machine returns UTC datetime, convert to local if needed
   SELECT 
-    convert_utc_to_local( to_timestamp(w.date,"yyyy-MM-dd'T'H:m:s"), cast(coord.lat as string)
-        + "," + cast(coord.lng as string) ) as datetime, 
-    w.temperature, 
-    w.precipitation.total as precipitation, 
-    w.precipitation.type as precipitation_type, 
-    w.wind.speed as wind_speed,
-    ROUND(13.12 + (0.6215 * w.temperature) - (11.37 * POWER(w.wind.speed,0.16)) + 
-      (0.3965 * w.temperature * POWER(w.wind.speed,0.16)),1) as feels_like
-  FROM 
-    make_dates(yearmonth) d,
-    time_machine(place_id:=place_id, date:=d, key:=key, units:="metric").data as w
-
-};
-
-weather_history_daily(locationname: string, yearmonth: string) :={
-  // group up hourly temps (using local time)
-  SELECT 
-    date,
-    min(temperature) as min_temperature,
-    max(temperature) as max_temperature,
-    round(avg(temperature),1) as avg_temperature,
-    sum(precipitation) as total_precipitation,
-    min(wind_speed) as min_wind_speed,
-    max(wind_speed) as max_wind_speed,
-    round(avg(wind_speed),1) as avg_wind_speed,
-    min(feels_like) as min_feels_like,
-    max(feels_like) as max_feels_like,
-    round(avg(feels_like),1) as avg_feels_like
-  FROM    
-    weather_history_hourly_local(locationname, yearmonth)
-  GROUP BY 
-    cast ( datetime as date ) as date
-  ORDER BY 1
+    to_date(datetime,"yyyy-MM-dd") as date,
+    precip, 
+    temp,
+    tempmax,
+    tempmin
+    feelslike,
+    feelslikemax,
+    feelslikemin,
+    snow,
+    snowdepth,
+    windspeed,
+    windgust
+   FROM 
+    res.days
 
 };

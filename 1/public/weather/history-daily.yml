@@ -10,8 +10,8 @@ computeLimitSeconds: 10
 refreshSeconds: 86400
 declaration: weather_history_daily
 metadata:
-  title: Historical Weather, daily, for a location
-  description: Days are with "UTC Days", Units are metric
+  title: Historical Weather, daily over one month, for a location
+  description: Units are metric
   tags:
     - weather
 security:
