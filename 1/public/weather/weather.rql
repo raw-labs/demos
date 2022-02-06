@@ -36,7 +36,7 @@ weather_history_daily(location: string, yearmonth: string) :={
     precip, 
     temp,
     tempmax,
-    tempmin
+    tempmin,
     feelslike,
     feelslikemax,
     feelslikemin,
