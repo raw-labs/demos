@@ -8,7 +8,6 @@ weather_history_hourly(location: string, yearmonth: string) :={
   date2 := cast(date1 + interval "1 month" - interval "1 days" as date);
   res := timeline(secret("weather.visualcrossing.com"), location, date1 ,date2, unitGroup:="metric");
 
-  // this is too slow when ading res.xxx fields - why?
   SELECT 
     to_date(d.datetime,"yyyy-MM-dd") + to_time( h.datetime, "H:m:s") as datehour,
     from_unixtime(h.datetimeEpoch) as datehourUTC,
