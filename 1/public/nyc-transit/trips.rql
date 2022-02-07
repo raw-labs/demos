@@ -47,15 +47,17 @@ fhv_other := select pickup_dt, count(*) as fhv_other
     GROUP BY to_date(substring(pickup_datetime,1,10),"yyyy-MM-dd") as pickup_dt 
 
 // MTA data, daily ridership. Data is dirty and needs cleaning
+// (using try_cast until issue resolved on "nulls" option)
 mta := SELECT 
   to_date(Date,"M/d/yyyy") as date, 
-  `Subways: Total Estimated Ridership` as mta_subway,
-  `Buses: Total Estimated Ridership` as mta_bus,
-  `LIRR: Total Estimated Ridership` as mta_lirr,
-  `Metro-North: Total Estimated Ridership` as mta_metronorth,
-  `Access-A-Ride: Total Scheduled Trips` as mta_accessaride
+  try_cast(`Subways: Total Estimated Ridership` as int) as mta_subway,
+  try_cast(`Buses: Total Estimated Ridership` as int) as mta_bus,
+  try_cast(`LIRR: Total Estimated Ridership` as int) as mta_lirr,
+  try_cast(`Metro-North: Total Estimated Ridership` as int) as mta_metronorth,
+  try_cast(`Access-A-Ride: Total Scheduled Trips` as int) as mta_accessaride
 FROM 
-  READ_CSV("https://new.mta.info/document/20441", cache:= interval "1 day", has_header:=true, nulls:=["N/A","TBD"]) 
+  READ_CSV("https://new.mta.info/document/20441", 
+  cache:= interval "1 day", has_header:=true, nulls:=["N/A","TBD"]) 
 WHERE year(to_date(Date,"M/d/yyyy")) = cast(y_str as int) AND 
   month(to_date(Date,"M/d/yyyy")) = cast(m_str as int)
    
