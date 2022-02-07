@@ -1,0 +1,29 @@
+trips_summary_daily_weather(yearmonth: string) := {
+
+FROM `github://raw-labs/demos/1/public/weather/weather.rql` 
+  IMPORT weather_history_daily;
+FROM `github://raw-labs/demos/1/public/nyc-transit/trips.rql` 
+  IMPORT trips;
+
+SELECT 
+  t.date, 
+  t.yellow + t.green + t.uber + t.lyft + t.via + t.fhv_other as cabs,
+  t.mta_bus + t.mta_accessaride as busses,
+  t.mta_subway + t.mta_lirr + t.mta_metronorth as trains,
+  w.temp,
+  w.tempmax,
+  w.tempmin,
+  w.precip, 
+  w.feelslike,
+  w.feelslikemax, 
+  w.feelslikemin,
+  w.snow,
+  w.snowdepth
+FROM
+  trips(yearmonth) t,
+  weather_history_daily("manhattan", yearmonth) w
+ WHERE 
+  t.date = w.date
+ORDER BY t.date
+
+};
