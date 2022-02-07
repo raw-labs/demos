@@ -79,4 +79,10 @@ https://api.raw-labs.com/examples/1/public/value-at-risk/index-var?index=^IXIC -
 Our good friend the New York TLC data set, we show how to query with RAW, and adding MTA data too:
   
 https://api.raw-labs.com/examples/1/public/nyc-transit/trips?yearmonth=2021-07
+  
+More functions, adding Weather data too:
+  
+https://api.raw-labs.com/examples/1/public/nyc-transit/trips-summary-daily-weather?yearmonth=2021-01
+https://api.raw-labs.com/examples/1/public/nyc-transit/taxi-trips-hourly-weather?yearmonth=2021-01
+  
 
