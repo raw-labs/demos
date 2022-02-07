@@ -17,6 +17,6 @@ security:
   public: true
 computeClass: normal
 cacheSizeMB: 512
-computeLimitSeconds: 30
+computeLimitSeconds: 60
 refreshSeconds: 86400
 enabled: true
