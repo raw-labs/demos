@@ -58,16 +58,13 @@ all_cab_trips :=
 
  hourly_cab_trips:=
  SELECT 
-    pickup_hour,
+   pickup_hour,
+    count(*) as num_trips,
     avg(unix_timestamp(to_timestamp(tpep_dropoff_datetime,"yyyy-MM-dd H:m:s")) - 
       unix_timestamp(to_timestamp(tpep_pickup_datetime,"yyyy-MM-dd H:m:s"))) as avg_duration,
-    sum(unix_timestamp(to_timestamp(tpep_dropoff_datetime,"yyyy-MM-dd H:m:s")) - 
-      unix_timestamp(to_timestamp(tpep_pickup_datetime,"yyyy-MM-dd H:m:s"))) as tot_duration,
     round(avg(try_cast(trip_distance as double)),2) as avg_dist, 
-    round(sum(try_cast(trip_distance as double)),2) as tot_dist,
-    round(sum(try_cast(fare_amount as double)),2) as tot_cab_fare,
-    round(sum(try_cast(total_amount as double)),2) as tot_amount_paid,
-    count(*) as num_trips 
+    round(avg(try_cast(fare_amount as double)),2) as avg_cab_fare,
+    round(avg(try_cast(total_amount as double)),2) as avg_amount_paid
   FROM 
     all_cab_trips
   WHERE tpep_pickup_datetime like y_str + "-" + m_str + "%" // filter bad dates out 
@@ -75,8 +72,8 @@ all_cab_trips :=
   ORDER BY pickup_hour;
 
   SELECT
-    c.pickup_hour, c.avg_duration, c.tot_duration, c.avg_dist, c.tot_dist, 
-    c.tot_cab_fare, c.tot_amount_paid, c.num_trips, w.precip, w.temp, 
+    c.pickup_hour, c.avg_duration, c.avg_dist,  
+    c.avg_cab_fare, c.avg_amount_paid, c.num_trips, w.precip, w.temp, 
     w.feelslike, w.snow, w.snowdepth, w.windspeed
   FROM
     hourly_cab_trips c,
