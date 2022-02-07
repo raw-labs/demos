@@ -83,6 +83,7 @@ https://api.raw-labs.com/examples/1/public/nyc-transit/trips?yearmonth=2021-07
 More functions, adding Weather data too:
   
 https://api.raw-labs.com/examples/1/public/nyc-transit/trips-summary-daily-weather?yearmonth=2021-01
+  
 https://api.raw-labs.com/examples/1/public/nyc-transit/taxi-trips-hourly-weather?yearmonth=2021-01
   
 
