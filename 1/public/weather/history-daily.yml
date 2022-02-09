@@ -2,7 +2,7 @@ raw: 0.9
 endpoint: GET
 code: rql
 codeFile: weather.rql
-format: json
+format: csv
 computeClass: normal
 enabled: true
 cacheSizeMB: 100
