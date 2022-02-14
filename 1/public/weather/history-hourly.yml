@@ -15,4 +15,6 @@ metadata:
   tags:
     - weather
 security:
-  public: true
+  public: false
+  scopes: 
+   - weather_auth
