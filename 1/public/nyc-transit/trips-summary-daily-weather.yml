@@ -15,7 +15,9 @@ codeFile: weather_blog.rql
 declaration: trips_summary_daily_weather
 format: csv
 security:
-  public: true
+  public: false
+  scopes: 
+   - weather_auth
 computeClass: normal
 cacheSizeMB: 512
 computeLimitSeconds: 60
