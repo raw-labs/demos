@@ -55,7 +55,8 @@ https://api.raw-labs.com/examples/1/public/ISS/isslocationosm
   
   
 ## [Weather](./1/public/weather)
-  Layering on top of a weather provider, in this case visualcrossing.com
+  Layering on top of a weather provider, in this case visualcrossing.com<br>
+  Note these are protected from public access due to licensed data being used. Please contact us at hello@raw-labs.com 
 
 Daily History:
   https://api.raw-labs.com/examples/1/public/weather/history-daily?location=london&yearmonth=2022-01
@@ -80,7 +81,8 @@ Our good friend the New York TLC data set, we show how to query with RAW, and ad
   
 https://api.raw-labs.com/examples/1/public/nyc-transit/trips?yearmonth=2021-07
   
-More functions, adding Weather data too:
+More functions, adding Weather data too, note these are protected from public access due to licensed data being used.<br>
+Please contact us at hello@raw-labs.com for more information 
   
 https://api.raw-labs.com/examples/1/public/nyc-transit/trips-summary-daily-weather?yearmonth=2021-01
   
