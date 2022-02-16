@@ -12,7 +12,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Weather](./1/public/weather)
 * [Value at Risk](./1/public/value-at-risk)
 * [New York Transit](./1/public/nyc-transit)
-* [RSS news analysis](./public/RSS-analysis)
+* [RSS news analysis](./1/public/RSS-analysis)
   
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
@@ -89,7 +89,7 @@ https://api.raw-labs.com/examples/1/public/nyc-transit/trips-summary-daily-weath
   
 https://api.raw-labs.com/examples/1/public/nyc-transit/taxi-trips-hourly-weather?yearmonth=2021-01
 
-## [RSS news analysis](./public/RSS-analysis)
+## [RSS news analysis](./1/public/RSS-analysis)
   
   Analytics on News web pages, including metadata extraction using opengraph.io and entity analytics using Google's natural language API
   
