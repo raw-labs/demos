@@ -50,6 +50,7 @@ rss_analysis(url: string) := {
     SELECT 
       name as entity_name, 
       `type` as entity_type,
+      metadata.wikipedia_url as wikipedia_url,
       SUM(e.salience) as total_salience, 
       COUNT(*) as story_count,
       (SELECT DISTINCT d.link FROM PARTITION) as stories,
@@ -62,7 +63,8 @@ rss_analysis(url: string) := {
                   "EVENT","WORK_OF_ART","CONSUMER_GOOD"]
     GROUP BY 
       e.name, 
-      e.`type`
+      e.`type`,
+      e.metadata
     ORDER BY 
       COUNT(*) DESC
 };
