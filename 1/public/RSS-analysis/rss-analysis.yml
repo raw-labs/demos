@@ -6,7 +6,7 @@ format: json
 computeClass: normal
 enabled: true
 cacheSizeMB: 200
-computeLimitSeconds: 20
+computeLimitSeconds: 60
 declaration: rss_analysis
 metadata:
   title: Perform text analysis on RSS feed articles
