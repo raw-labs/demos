@@ -12,6 +12,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Weather](./1/public/weather)
 * [Value at Risk](./1/public/value-at-risk)
 * [New York Transit](./1/public/nyc-transit)
+* [RSS news analysis](./public/RSS-analysis)
   
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
@@ -87,5 +88,27 @@ Please contact us at hello@raw-labs.com for more information
 https://api.raw-labs.com/examples/1/public/nyc-transit/trips-summary-daily-weather?yearmonth=2021-01
   
 https://api.raw-labs.com/examples/1/public/nyc-transit/taxi-trips-hourly-weather?yearmonth=2021-01
+
+## [RSS news analysis](./public/RSS-analysis)
   
+  Analytics on News web pages, including metadata extraction using opengraph.io and entity analytics using Google's natural language API
+  
+  **CNN US Edition**<br>
+RSS:<br>
+http://rss.cnn.com/rss/edition_us.rss <br>
+RAW Endpoint:<br>
+https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=http%3A%2F%2Frss.cnn.com%2Frss%2Fedition.rss<br>
+
+  **Huffington Post:**<br>
+RSS:<br>
+https://www.huffpost.com/section/front-page/feed?x=1 <br>
+RAW Endpoint:<br>
+https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=https%3A%2F%2Fwww.huffpost.com%2Fsection%2Ffront-page%2Ffeed%3Fx%3D1<br>
+
+**Techcrunch:**<br>
+RSS:<br>
+https://techcrunch.com/feed/?guccounter=1<br>
+RAW Endpoint:<br>
+https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=https%3A%2F%2Ftechcrunch.com%2Ffeed%2F%3Fguccounter%3D1<br>
+
 
