@@ -12,13 +12,13 @@ Endpoints :
 
 title: title or partial title to search<p>
 
-Example: https://demos.raw-labs.com/1/public/movies/movies-by-title?title=Grease
+Example: https://api.raw-labs.com/examples/1/public/movies/movies-by-title?title=Grease
 
 ## movies-by-year
 `movies_by_year( `year`:int )`
 
 year: movie year to search for<p>
 
-Example: https://demos.raw-labs.com/1/public/movies/movies-by-year?year=2000
+Example: https://api.raw-labs.com/examples/1/public/movies/movies-by-year?year=2000
 
 
