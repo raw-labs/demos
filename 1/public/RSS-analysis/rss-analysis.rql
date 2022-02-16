@@ -24,12 +24,10 @@ rss_analysis(url: string) := {
     FROM 
       read_rss(url:=url, cache:= interval "1 hour").channel.item as rss_item
     WHERE
-      to_timestamp ( rss_item.pubDate , 
-                    "eee, dd MMM yyyy HH:mm:ss Z") > 
+      to_timestamp ( substring(rss_item.pubDate,1,25) , 
+                    "eee, dd MMM yyyy HH:mm:ss") > 
                     DATE_TRUNC("day", current_timestamp())
-    ORDER BY 
-      to_timestamp ( rss_item.pubDate , 
-                    "eee, dd MMM yyyy HH:mm:ss Z") DESC
+    ORDER BY 3 DESC
   };
 
   // call Google's API to perform entity extraction
@@ -47,24 +45,24 @@ rss_analysis(url: string) := {
 
 
   // Sum up the results across all stories in the RSS feed.
-    SELECT 
-      name as entity_name, 
-      `type` as entity_type,
-      metadata.wikipedia_url as wikipedia_url,
-      SUM(e.salience) as total_salience, 
-      COUNT(*) as story_count,
-      (SELECT DISTINCT d.link FROM PARTITION) as stories,
-      (SELECT COUNT(m) FROM PARTITION, e.mentions m) as mention_count // mentions are nested
-    FROM 
-      data d, 
-      d.analysis.entities e
-    WHERE 
-      e.`type` in ["PERSON", "LOCATION", "ORGANIZATION",
-                  "EVENT","WORK_OF_ART","CONSUMER_GOOD"]
-    GROUP BY 
-      e.name, 
-      e.`type`,
-      e.metadata
-    ORDER BY 
-      COUNT(*) DESC
+  SELECT 
+    name as entity_name, 
+    `type` as entity_type,
+    metadata.wikipedia_url as wikipedia_url,
+    SUM(e.salience) as total_salience, 
+    COUNT(*) as story_count,
+    (SELECT DISTINCT d.link FROM PARTITION) as stories,
+    (SELECT COUNT(m) FROM PARTITION, e.mentions m) as mention_count // mentions are nested
+  FROM 
+    data d, 
+    d.analysis.entities e
+  WHERE 
+    e.`type` in ["PERSON", "LOCATION", "ORGANIZATION",
+                "EVENT","WORK_OF_ART","CONSUMER_GOOD"]
+  GROUP BY 
+    e.name, 
+    e.`type`,
+    e.metadata
+  ORDER BY 
+    COUNT(*) DESC
 };
