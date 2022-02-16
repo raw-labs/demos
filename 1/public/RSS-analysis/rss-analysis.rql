@@ -25,11 +25,11 @@ rss_analysis(url: string) := {
       read_rss(url:=url, cache:= interval "1 hour").channel.item as rss_item
     WHERE
       to_timestamp ( rss_item.pubDate , 
-                    "eee, dd MMM yyyy HH:mm:ss z") > 
+                    "eee, dd MMM yyyy HH:mm:ss Z") > 
                     DATE_TRUNC("day", current_timestamp())
     ORDER BY 
       to_timestamp ( rss_item.pubDate , 
-                    "eee, dd MMM yyyy HH:mm:ss z") DESC
+                    "eee, dd MMM yyyy HH:mm:ss Z") DESC
   };
 
   // call Google's API to perform entity extraction
