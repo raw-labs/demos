@@ -16,4 +16,4 @@ metadata:
     - rss
 security:
   public: true
-refreshSeconds: 60
+refreshSeconds: 3600
