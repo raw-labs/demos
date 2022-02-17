@@ -26,7 +26,7 @@ rss_analysis(url: string) := {
     WHERE
       to_timestamp ( substring(rss_item.pubDate,1,25) , 
                     "eee, dd MMM yyyy HH:mm:ss") > 
-                    DATE_TRUNC("day", current_timestamp())
+                    DATE_TRUNC("hour", current_timestamp()) - interval "24 hours"
     ORDER BY 3 DESC
   };
 
