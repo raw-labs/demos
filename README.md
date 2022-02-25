@@ -13,6 +13,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Value at Risk](#value-at-risk)
 * [New York Transit](#new-york-transit)
 * [RSS news analysis](#rss-news-analysis)
+* [Wikipedia](#wikipedia)
   
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
@@ -110,5 +111,12 @@ RSS:<br>
 https://techcrunch.com/feed/?guccounter=1<br>
 RAW Endpoint:<br>
 https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=https%3A%2F%2Ftechcrunch.com%2Ffeed%2F%3Fguccounter%3D1<br>
+
+## [Wikipedia](./1/public/wikipedia)
+  
+  SPARQL queries onto wikidata.org (wikipedia's knowledge graph database)<br>
+  
+**Heads of Government with Twitter accounts**<br>
+https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government
 
 
