@@ -13,7 +13,7 @@ isslocation() := {
     geo := geocode( secret("opencagedata.com"),
              iss_location_1sec().iss_position.latitude+","+iss_location_1sec().iss_position.longitude )
     cfirst(geo.results).formatted
-}
+};
 
 //
 // this returns a link to a URL to OpenStreetMap with the current position of the ISS
@@ -22,4 +22,4 @@ isslocationosm() := {
     geo := geocode( secret("opencagedata.com"),
              iss_location_1sec().iss_position.latitude+","+iss_location_1sec().iss_position.longitude )
     cfirst(geo.results).annotations.OSM.url
-}
+};

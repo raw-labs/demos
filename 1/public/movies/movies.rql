@@ -8,8 +8,8 @@ search_by_title(title: string) := {
   SELECT * FROM movies m 
     WHERE LOWER(m.title) LIKE 
     "%" + LOWER(title) + "%"
-}
+};
 
 search_by_year(year: int) := {
     SELECT * from movies m where m.year = year
-}
+};

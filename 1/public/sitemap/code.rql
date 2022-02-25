@@ -13,7 +13,7 @@ updated_urls(website: string) := {
         select * from read_xml[indexfile](website+"/sitemap.xml").sitemap
     else
     select * from read_xml[indexfile](website+"sitemap.xml").sitemap
-}
+};
 
 // typealias for the sitemap
 typealias loclastmod := record( 
@@ -30,4 +30,4 @@ recentpages(website: string) := {
     select url from updated_urls(website) uu, read_xml[loclastmod](uu.loc).url url
     order by url.lastmod desc
     limit 10
-}
+};
