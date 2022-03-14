@@ -1,0 +1,26 @@
+
+ FROM `github://raw-labs/lib/1/public/twitter.com/twitter.rql`
+     IMPORT get_tweets_search_recent;
+
+heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
+
+
+  twitterAccounts := SELECT DISTINCT twittername
+      FROM READ("https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government")
+      WHERE twittername is not null
+      AND countryLabel in split(countries,",");
+        
+  SELECT
+    get_tweets_search_recent( 
+      client_id:= "GFwyLT9bZC4Gph3syZyzNAH4K",
+      client_secret:= "6wiHNbKkcQFvv0HPrR6CTwPoHbPs6VRnJinLcTiMRcqpoygwW7",
+      query:= "(from:"+twittername+") " + mkstring(split(keywords,",")," "),
+      max_results:=100,
+      `tweet.fields`:="id,text,geo,created_at,entities,author_id,in_reply_to_user_id,referenced_tweets",
+      expansions:= "author_id",
+      `user.fields`:="username,name,id"
+    )
+  FROM twittername IN twitterAccounts
+
+};
+
