@@ -12,8 +12,8 @@ heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
         
   SELECT
     get_tweets_search_recent( 
-      client_id:= "GFwyLT9bZC4Gph3syZyzNAH4K",
-      client_secret:= "6wiHNbKkcQFvv0HPrR6CTwPoHbPs6VRnJinLcTiMRcqpoygwW7",
+      client_id:= secret("twitter.com_clientId"),
+      client_secret:= secret("twitter.com_clientSecret"),
       query:= "(from:"+twittername+") " + mkstring(split(keywords,",")," OR "),
       max_results:=100,
       `tweet.fields`:="id,text,geo,created_at,entities,author_id,in_reply_to_user_id,referenced_tweets",
