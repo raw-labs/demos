@@ -14,7 +14,7 @@ heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
     get_tweets_search_recent( 
       client_id:= "GFwyLT9bZC4Gph3syZyzNAH4K",
       client_secret:= "6wiHNbKkcQFvv0HPrR6CTwPoHbPs6VRnJinLcTiMRcqpoygwW7",
-      query:= "(from:"+twittername+") " + mkstring(split(keywords,",")," "),
+      query:= "(from:"+twittername+") " + mkstring(split(keywords,",")," OR "),
       max_results:=100,
       `tweet.fields`:="id,text,geo,created_at,entities,author_id,in_reply_to_user_id,referenced_tweets",
       expansions:= "author_id",
