@@ -1,9 +1,9 @@
 // simple example of using FRED API for emissions data along
 // with ourworldindata CO2 dataset
 
-FROM `github://raw-labs/lib/1/public/stlouisfe.org/fred.rql`
+FROM `github://raw-labs/lib/1/public/stlouisfed.org/fred.rql`
     IMPORT observations;
-    
+
 us_vs_global_co2_emissions() := {
 
   // US CO2 emissions vs. Global CO2 emissions, by year
