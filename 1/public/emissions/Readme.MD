@@ -4,7 +4,7 @@ Simple example using [FRED](https://fred.stlouisfed.org/) data (through their AP
 
 **Disclaimer: This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
 
-See Associated blog at https://raw-labs.com/blog/816000-interesting-free-financial-datasets-simple-with-raw-labs
+See Associated blog at https://raw-labs.com/blog/816000-interesting-free-datasets-with-raw-labs
 
 ## Endpoints :
 
