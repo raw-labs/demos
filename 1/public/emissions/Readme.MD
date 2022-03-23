@@ -1,7 +1,8 @@
 # Emissions
 
 Simple example using [FRED](https://fred.stlouisfed.org/) data (through their API) and [OurWorldInData](https://ourworldindata.org/) datasets
-Disclaimer: This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
+
+**Disclaimer: This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.
 
 See Associated blog at https://raw-labs.com/blog/816000-interesting-free-financial-datasets-simple-with-raw-labs
 
