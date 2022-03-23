@@ -5,8 +5,8 @@ codeFile: queries.rql
 format: json
 computeClass: normal
 enabled: true
-cacheSizeMB: 10
-computeLimitSeconds: 10
+cacheSizeMB: 20
+computeLimitSeconds: 30
 declaration: us_vs_global_co2_emissions
 metadata:
   title: US vs Global CO2 Emissions, by Year
