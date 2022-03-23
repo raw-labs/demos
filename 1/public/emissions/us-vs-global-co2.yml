@@ -16,4 +16,4 @@ metadata:
     - environment
 security:
   public: true
-refreshSeconds: 864000
+refreshSeconds: 86400
