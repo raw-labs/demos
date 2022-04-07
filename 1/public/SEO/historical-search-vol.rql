@@ -1,0 +1,10 @@
+FROM `github://raw-labs/lib/1/public/dataforseo.com/query.rql`
+    IMPORT historical_search_volume;
+
+historical_search_volume(
+    key:=secret("dataforseo.com"), 
+    keywords:= "elon musk, tesla, gigaberlin", 
+    location_name:= "United States",
+    language_name:="English",
+    include_serp_info:= true
+)
