@@ -14,6 +14,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [New York Transit](#new-york-transit)
 * [RSS news analysis](#rss-news-analysis)
 * [Wikipedia](#wikipedia)
+* [Emissions](#emissions)
   
 Read our Blogs and Tutorials too:
 https://www.raw-labs.com/blog
@@ -118,5 +119,12 @@ https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=https%3
   
 **Heads of Government with Twitter accounts**<br>
 https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government
+
+## [Emissions](./1/public/emissions)
+  
+ CO2 emissions, US, vs. Rest of World, by year (data from FRED and OWID)<br>
+  
+**US vs Global CO2 Emissions, by Year**<br>
+https://api.raw-labs.com/examples/1/public/emissions/us-vs-global-co2
 
 
