@@ -1,13 +1,13 @@
 raw: 0.9
 endpoint: GET
 code: rql
-codeFile: historical-search-vol.rql
+codeFile: seo.rql
 format: json
 computeClass: normal
 enabled: true
 cacheSizeMB: 10
 computeLimitSeconds: 10
-declaration: historical_search_volume
+declaration: search_vol_hist
 metadata:
   title: Return the Historical Search Volume for Keywords, using location, language. 
   description: Optional SERP features. Uses the DataForSEO API
