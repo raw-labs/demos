@@ -4,10 +4,10 @@ FROM `github://raw-labs/lib/1/public/dataforseo.com/query.rql`
 search_vol_hist(
     key: string,
     keywords: string, 
-    location_name: string,
-    location_code: int,
-    language_name: string,
-    language_code: string,
+    location_name: string nullable := null,
+    location_code: int nullable := null,
+    language_name: string nullable := null,
+    language_code: string nullable := null,
     include_serp_info: bool:=false
 ) := {
 
