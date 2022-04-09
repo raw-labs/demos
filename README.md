@@ -15,9 +15,12 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [RSS news analysis](#rss-news-analysis)
 * [Wikipedia](#wikipedia)
 * [Emissions](#emissions)
-  
-Read our Blogs and Tutorials too:
+
+Read our Blogs and Tutorials, many of which are relevant to these examples:
 https://www.raw-labs.com/blog
+  
+See our Docs and Developer Resources:
+https://docs.raw-labs.com
 
 Follow us on on Twitter:
 https://twitter.com/raw_labs
