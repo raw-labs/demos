@@ -139,6 +139,6 @@ https://api.raw-labs.com/examples/1/public/emissions/us-vs-global-co2
 
   optional parameters include type, state, party
   
-  https://api.raw-labs.com/examples/1/public/us-government/legislators - returns all
+  https://api.raw-labs.com/examples/1/public/us-government/legislators - returns all<br>
   https://api.raw-labs.com/examples/1/public/us-government/legislators?state=CA&type=rep&party=Democrat - Californian, Democrats in House of Representatives
   
