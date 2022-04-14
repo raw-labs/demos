@@ -2,7 +2,10 @@
 # Example Data Products
 
 The following are data products examples built using RAW. More detail and the code is available within these sub-directories<p>
-
+  
+Clicking on these endpoints will generally return JSON data into the browser. This is not formatted in most web browsers. Therefore in Chrome, we suggest you install a Chrome extension: JSON formatter - [get from Chrome Webstore](https://chrome.google.com/webstore/search/json%20formatter)
+<br>In Safari you can install an extension [like this one](https://apps.apple.com/gb/app/prettyjson-for-safari/id1445328303?mt=12)<br>
+  
 Comments and suggestions are welcome: feel free to file GitHub Issues or email us at hello@raw-labs.com
 
 * [Movies](#movies)
