@@ -15,6 +15,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [RSS news analysis](#rss-news-analysis)
 * [Wikipedia](#wikipedia)
 * [Emissions](#emissions)
+* [US government](#us-government)
 
 Read our Blogs and Tutorials, many of which are relevant to these examples:
 https://www.raw-labs.com/blog
@@ -130,4 +131,14 @@ https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government
 **US vs Global CO2 Emissions, by Year**<br>
 https://api.raw-labs.com/examples/1/public/emissions/us-vs-global-co2
 
+## [US Government](./1/public/us-government)
+  
+  Free open data from https://theunitedstates.io - simple queries used for our [video tutorials](https://raw-labs.com/library/type/videos/)
 
+**US Legislators (current)**
+
+  optional parameters include type, state, party
+  
+  https://api.raw-labs.com/examples/1/public/us-government/legislators - returns all
+  https://api.raw-labs.com/examples/1/public/us-government/legislators?state=CA&type=rep&party=Democrat - Californian, Democrats in House of Representatives
+  
