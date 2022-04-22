@@ -30,3 +30,4 @@ countryGoldMedals(country_name: string) :=
  GROUP BY Year, City
  HAVING COUNT(*) > 0
  ORDER BY Year DESC;
+

@@ -2,7 +2,10 @@
 # Example Data Products
 
 The following are data products examples built using RAW. More detail and the code is available within these sub-directories<p>
-
+  
+Clicking on these endpoints will generally return JSON data into the browser. This is not formatted in most web browsers. Therefore in Chrome, we suggest you install a Chrome extension: JSON formatter - [get from Chrome Webstore](https://chrome.google.com/webstore/search/json%20formatter)
+<br>In Safari you can install an extension [like this one](https://apps.apple.com/gb/app/prettyjson-for-safari/id1445328303?mt=12)<br>
+  
 Comments and suggestions are welcome: feel free to file GitHub Issues or email us at hello@raw-labs.com
 
 * [Movies](#movies)
@@ -15,6 +18,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [RSS news analysis](#rss-news-analysis)
 * [Wikipedia](#wikipedia)
 * [Emissions](#emissions)
+* [US government](#us-government)
 
 Read our Blogs and Tutorials, many of which are relevant to these examples:
 https://www.raw-labs.com/blog
@@ -130,4 +134,14 @@ https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government
 **US vs Global CO2 Emissions, by Year**<br>
 https://api.raw-labs.com/examples/1/public/emissions/us-vs-global-co2
 
+## [US Government](./1/public/us-government)
+  
+  Free open data from https://theunitedstates.io - simple queries used for our [video tutorials](https://raw-labs.com/library/type/videos/)
 
+**US Legislators (current)**
+
+  optional parameters include type, state, party
+  
+  https://api.raw-labs.com/examples/1/public/us-government/legislators - returns all<br>
+  https://api.raw-labs.com/examples/1/public/us-government/legislators?state=CA&type=rep&party=Democrat - Californian, Democrats in House of Representatives
+  
