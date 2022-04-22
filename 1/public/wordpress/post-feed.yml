@@ -1,0 +1,19 @@
+raw: 0.9
+endpoint: GET
+code: rql
+codeFile: queries.rql
+format: json
+computeClass: normal
+enabled: true
+cacheSizeMB: 1
+computeLimitSeconds: 10
+refreshSeconds: 3600
+declaration: post_feed
+metadata:
+  title: Wordpress Post Feed
+  description: Returns key fields from a Wordpress Site, for posts, of different types - each wordpress installation may be customised so that the post_type paramter is dynamic. Check with your WP installation which types are supported
+  tags:
+    - wordpress
+    - website
+security:
+  public: true

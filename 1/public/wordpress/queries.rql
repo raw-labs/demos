@@ -1,0 +1,20 @@
+FROM `github://raw-labs/lib/1/public/wordpress.com/wordpress.rql`
+    IMPORT posts;
+
+// call wordpress function / REST API to return necessary data.
+post_feed( wp_site: string, wp_post_type: string nullable:="posts", page: int  := 1, per_page: int := 10):= {
+
+    wp_user := secret("wordpress_user");
+    wp_password := secret("wordpress_password");
+
+    select date, title.rendered as title, link, cfirst(yoast_head_json.og_image).url as image_url
+    from posts (
+            wp_site:=wp_site, 
+            wp_post_type:=wp_post_type, 
+            wp_user:=wp_user, 
+            wp_password:=wp_password, 
+            page:= cast (page as string), 
+            per_page:= cast(per_page as string)
+        )
+
+};
