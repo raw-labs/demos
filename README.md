@@ -43,7 +43,7 @@ Endpoints combine "open" data hosted on DataHub, as well as files stored on an S
 
 Medals per country<p>https://api.raw-labs.com/examples/1/public/olympic-games/country-medals?country_name=Germany
 
-Medals per athlete (there's a [video](https://www.youtube.com/watch?v=zgBW5kHK-Vo) about this endpoint)<p>https://api.raw-labs.com/demos/1/public/olympic-games/athlete-data?athlete_name=BURKE,%20Thomas
+Medals per athlete (there's a [video](https://www.youtube.com/watch?v=zgBW5kHK-Vo) about this endpoint)<p>https://api.raw-labs.com/examples/1/public/olympic-games/athlete-data?athlete_name=BURKE,%20Thomas
 
 Gold medals per country<p>https://api.raw-labs.com/examples/1/public/olympic-games/country-gold-medals?country_name=Germany
 
