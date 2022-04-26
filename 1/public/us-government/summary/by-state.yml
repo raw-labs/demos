@@ -1,0 +1,19 @@
+raw: 0.9
+endpoint: GET
+code: rql
+codeFile: ../legislators.rql
+format: json
+computeClass: normal
+enabled: true
+cacheSizeMB: 10
+computeLimitSeconds: 20
+declaration: male_to_female_states
+metadata:
+  title: Ratio of Male to Female Legislators for a set of States
+  description: party and type are both optional
+  tags:
+    - government
+    - USA
+security:
+  public: true
+refreshSeconds: 60

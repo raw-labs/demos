@@ -1,9 +1,77 @@
 legislators ( state: string := "%", type: string:= "%", party: string:="%") := {
 SELECT * 
 FROM READ("https://theunitedstates.io/congress-legislators/legislators-current.csv") l
+UNION ALL 
+SELECT 
+   READ("https://theunitedstates.io/congress-legislators/legislators-historical.csv") h
 WHERE
   l.state like state AND
   l.type like type AND
   l.party like party
 LIMIT 10
+};
+
+// typealias, this one reading only the first 13 colunms of the file
+typealias first_cols := record(
+    `last_name`: string,
+    `first_name`: string,
+    `middle_name`: string nullable,
+    `suffix`: string nullable,
+    `nickname`: string nullable,
+    `full_name`: string,
+    `birthday`: string nullable,
+    `gender`: string,
+    `type`: string,
+    `state`: string,
+    `district`: string nullable,
+    `senate_class`: string nullable,
+    `party`: string
+);
+
+
+// example of a function that returns a result-set
+summary() := {
+  SELECT party, type, gender, state
+  FROM 
+    READ_CSV[first_cols]("https://theunitedstates.io/congress-legislators/legislators-current.csv",skip:=1)
+  UNION ALL 
+    READ_CSV[first_cols]("https://theunitedstates.io/congress-legislators/legislators-historical.csv",skip:=1)
+};
+
+// two functions using the summary function
+male_to_female_party(party: string nullable :="%", type: string nullable := "%") := {
+  // male to female ratio by party
+  SELECT 
+    party, 
+    type, 
+    sum(case when s.gender = "M" then 1 else 0 end) as count_m, 
+    sum(case when s.gender = "F" then 1 else 0 end) as count_f
+  FROM 
+    summary() as s
+  WHERE
+    s.party like party AND
+    s.type like type
+  GROUP BY 
+    s.party as party, 
+    s.type as type
+};
+
+
+male_to_female_states(states_list: string, party: string nullable :="%", type: string nullable := "%") := {
+  // this function shows how to pass a list of strings in, split them and use as a collection
+  // states_list is mandatory
+  SELECT 
+    party, 
+    type, 
+    sum(case when s.gender = "M" then 1 else 0 end) as count_m, 
+    sum(case when s.gender = "F" then 1 else 0 end) as count_f
+  FROM 
+    summary() as s
+  WHERE
+    s.state IN  split(states_list,",")   AND
+    s.party like party AND
+    s.type like type
+  GROUP BY 
+    s.party as party, 
+    s.type as type
 };
