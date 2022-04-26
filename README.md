@@ -145,3 +145,11 @@ https://api.raw-labs.com/examples/1/public/emissions/us-vs-global-co2
   https://api.raw-labs.com/examples/1/public/us-government/legislators - returns all<br>
   https://api.raw-labs.com/examples/1/public/us-government/legislators?state=CA&type=rep&party=Democrat - Californian, Democrats in House of Representatives
   
+**Summaries (current & historical)**
+  
+  summaries of male to female legislators across all current and historical data. 
+  These are good examples of union'ing two data structures, creating a summary function as a re-usable intermediate dataset.
+  
+  https://api.raw-labs.com/examples/1/public/us-government/summary/by-state?states_list=CA,NV
+  https://api.raw-labs.com/examples/1/public/us-government/summary/by-party-house?party=Democrat
+  
