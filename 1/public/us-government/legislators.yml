@@ -11,7 +11,7 @@ computeLimitSeconds: 20
 declaration: legislators
 metadata:
   title: Legislators of the United States
-  description: search by type, party and state
+  description: search by type, party and state - returns only 10 for a demo
   tags:
     - government
     - USA

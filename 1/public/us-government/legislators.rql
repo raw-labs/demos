@@ -1,9 +1,6 @@
 legislators ( state: string := "%", type: string:= "%", party: string:="%") := {
 SELECT * 
 FROM READ("https://theunitedstates.io/congress-legislators/legislators-current.csv") l
-UNION ALL 
-SELECT 
-   READ("https://theunitedstates.io/congress-legislators/legislators-historical.csv") h
 WHERE
   l.state like state AND
   l.type like type AND
