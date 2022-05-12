@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://cdn.raw-labs.com/endpoint-schemaV0.9.json
 raw: 0.9
 endpoint: GET
 code: rql
@@ -17,3 +18,26 @@ metadata:
 security:
   public: true
 refreshSeconds: 60
+tests:
+  - name: test1
+    description: "first test, just a list of states"
+    arguments: 
+      - key: states_list 
+        value: "CA, OH, FL"
+  - name: test2
+    description: "second test, state, party and (house) type"
+    arguments: 
+      - key: states_list
+        value: "NY"
+      - key: party
+        value: "Democrat"
+      - key: type
+        value: "rep"
+  - name: test3
+    description: "a third test"
+    arguments:
+      - key: states_list
+        value: "NV,UT"
+      - key: type
+        value: "sen"
+    
