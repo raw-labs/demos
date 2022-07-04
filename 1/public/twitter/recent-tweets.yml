@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://cdn.raw-labs.com/endpoint-schemaV0.9.json
+raw: 0.9
+endpoint: GET
+code: rql
+codeFile: queries.rql
+format: json
+computeClass: normal
+enabled: true
+cacheSizeMB: 200
+computeLimitSeconds: 10
+declaration: recent_tweets
+metadata:
+  title: Recent Tweets
+  description: Returns the last X tweets from a number of twitter accounts, optionally can use keywords to filter on
+  tags:
+    - twitter
+    - news
+  termsOfService: https://raw-labs.com/terms-of-use/
+  author: Jeremy Posner
+  contact:
+    name: RAW Labs Support
+    url: https://discuss.raw-labs.com/
+    email: support@raw-labs.com
+  license:
+    name: Apache v2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0
+security:
+  public: true
+refreshSeconds: 600
+tests:
+  - name: SingleTwitterAccount
+    description: tests a single account
+    arguments:
+      - key: twitterNameList
+        value: "BorisJohnson"
+      - key: keywordList
+        value: "ukraine"
