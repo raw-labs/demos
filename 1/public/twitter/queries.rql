@@ -17,7 +17,7 @@ query_str(twitterNameList: string nullable := null, keywordList: string nullable
     + IF keywordList is null THEN "" ELSE ")" 
 }
 
-recent_tweets( twitterNameList: string := "", keywordList: string := "",maxResults: int := 100 ) := {
+recent_tweets( twitterNameList: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
   get_tweets_search_recent( 
         client_id:= secret("twitter.com_clientId"),
         client_secret:= secret("twitter.com_clientSecret"),
@@ -31,6 +31,9 @@ recent_tweets( twitterNameList: string := "", keywordList: string := "",maxResul
 
 heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
   // use wikipedia to retrieve twitter accounts from heads of government
+  // parameters:
+  //   countries: comma delimited list accepted
+  //   keywords: comma delimited list accepted
   twitterAccounts := SELECT DISTINCT twittername
       FROM READ("https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government")
       WHERE twittername is not null
