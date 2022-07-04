@@ -5,7 +5,7 @@ cab_trips_2021_07() := {
   //Yellow Taxi Trip Records
   taxi_yellow := select pickup_dt, count(*) as yellow
   from 
-  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/trip+data/yellow_tripdata_2021-07.csv", cache:=interval "10 days")
+  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/csv_backup/yellow_tripdata_2021-07.csv", cache:=interval "10 days")
   where tpep_pickup_datetime like "2021-07%" // filter bad dates out
   group by to_date(substring(tpep_pickup_datetime,1,10),"yyyy-MM-dd") as pickup_dt;
 
@@ -13,7 +13,7 @@ cab_trips_2021_07() := {
 
   taxi_green := select pickup_dt, count(*) as green
   from 
-  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/trip+data/green_tripdata_2021-07.csv", cache:=interval "10 days")
+  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/csv_backup/green_tripdata_2021-07.csv", cache:=interval "10 days")
   where tpep_pickup_datetime like "2021-07%" // filter bad dates out
   group by to_date(substring(tpep_pickup_datetime,1,10),"yyyy-MM-dd") as pickup_dt;
 
@@ -26,7 +26,7 @@ cab_trips_2021_07() := {
     SUM(CASE WHEN hvfhs_license_num = "HV0004" THEN 1 ELSE 0 END) as via,
     SUM(CASE WHEN hvfhs_license_num = "HV0005" THEN 1 ELSE 0 END) as lyft
   from 
-  READ_CSV[tf]("https://nyc-tlc.s3.amazonaws.com/trip+data/fhvhv_tripdata_2021-07.csv", cache:=interval "10 days")
+  READ_CSV[tf]("https://nyc-tlc.s3.amazonaws.com/csv_backup/fhvhv_tripdata_2021-07.csv", cache:=interval "10 days")
   where pickup_datetime like "2021-07%" // filter bad dates out
   GROUP BY to_date(substring(pickup_datetime,1,10),"yyyy-MM-dd") as pickup_dt;
 
@@ -34,7 +34,7 @@ cab_trips_2021_07() := {
   typealias to := record(`dispatching_base_num`: string,`pickup_datetime`: string,`dropoff_datetime`: string,`PULocationID`: string nullable,`DOLocationID`: string nullable,`SR_Flag`: string nullable,`Affiliated_base_number`: string nullable);
 
   fhv_other := select pickup_dt, count(*) as fhv_other 
-      from READ_CSV[to]("https://nyc-tlc.s3.amazonaws.com/trip+data/fhv_tripdata_2021-07.csv", cache:=interval "10 days") 
+      from READ_CSV[to]("https://nyc-tlc.s3.amazonaws.com/csv_backup/fhv_tripdata_2021-07.csv", cache:=interval "10 days") 
       where pickup_datetime like "2021-07%" // filter bad dates out 
       GROUP BY to_date(substring(pickup_datetime,1,10),"yyyy-MM-dd") as pickup_dt 
 

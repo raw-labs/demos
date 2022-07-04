@@ -12,7 +12,7 @@ fhv_counts() := {
          fhv_type_lookup(hvfhs_license_num) as type,
         count(*) as rides
   from 
-  READ("https://nyc-tlc.s3.amazonaws.com/trip+data/fhvhv_tripdata_2021-07.csv", cache:=interval "10 days") 
+  READ("https://nyc-tlc.s3.amazonaws.com/csv_backup/fhvhv_tripdata_2021-07.csv", cache:=interval "10 days") 
   GROUP BY 
     to_date(substring(pickup_datetime,1,10),"yyyy-MM-dd") as pickupdate,
     hvfhs_license_num

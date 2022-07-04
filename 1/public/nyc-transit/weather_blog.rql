@@ -50,10 +50,10 @@ typealias t := record(VendorID: string, tpep_pickup_datetime: string,
 
  
 all_cab_trips := 
-  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/trip+data/yellow_tripdata_" + 
+  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/csv_backup/yellow_tripdata_" + 
     y_str + "-" + m_str + ".csv", cache:=interval "10 days")
   UNION ALL
-  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/trip+data/green_tripdata_" + 
+  READ_CSV[t]("https://nyc-tlc.s3.amazonaws.com/csv_backup/green_tripdata_" + 
     y_str + "-" + m_str + ".csv", cache:=interval "10 days");
 
  hourly_cab_trips:=
