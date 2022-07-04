@@ -104,9 +104,9 @@ https://api.raw-labs.com/examples/1/public/nyc-transit/taxi-trips-hourly-weather
   
   **CNN US Edition**<br>
 RSS:<br>
-http://rss.cnn.com/rss/edition_us.rss <br>
+http://rss.cnn.com/rss/money_news_international.rss<br>
 RAW Endpoint:<br>
-https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=http%3A%2F%2Frss.cnn.com%2Frss%2Fedition.rss<br>
+https://api.raw-labs.com/examples/1/public/RSS-analysis/rss-analysis?url=http://rss.cnn.com/rss/edition_world.rss<br>
 
   **Huffington Post:**<br>
 RSS:<br>
