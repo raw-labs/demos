@@ -2,9 +2,21 @@ raw: 0.9
 endpoint: GET
 metadata:
   title: Athlete medals
-  description: Get all medals for athlete name
+  description: |
+    Get all medals for athlete name.
+    Based on Summer and Winter olympics data.
+    athlete_name: athlete to search in the format "LAST, First"
   tags:
     - olympics
+  termsOfService: https://raw-labs.com/terms-of-use/
+  contact:
+    name: RAW Labs
+    url: https://discuss.raw-labs.com/
+    email: support@raw-labs.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0
 code: rql
 codeFile: code.rql
 declaration: athlete

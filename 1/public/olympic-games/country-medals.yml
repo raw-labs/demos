@@ -2,9 +2,21 @@ raw: 0.9
 endpoint: GET
 metadata:
   title: Country Olympic medal statistics
-  description: Get year, city, and the number of the all gold, silver or bronze medals of the country name specified
+  description: |
+    Get year, city, and number of all gold, silver or bronze medals for the specified country.
+    Country names are based on official_name_en found in https://pkgstore.datahub.io/core/country-codes/country-codes_csv/data/c4df23af89a9386f92cbddcd54bc9852/country-codes_csv.csv
+    Based on Summer and Winter olympics data.
   tags:
     - olympics
+  termsOfService: https://raw-labs.com/terms-of-use/
+  contact:
+    name: RAW Labs
+    url: https://discuss.raw-labs.com/
+    email: support@raw-labs.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0
 code: rql
 codeFile: code.rql
 declaration: countryMedals
