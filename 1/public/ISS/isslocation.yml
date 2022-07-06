@@ -9,8 +9,22 @@ enabled: true
 declaration: isslocation
 metadata:
   title: ISS location
-  description: Locate the ISS position above earth
+  description: |
+    Locates the ISS position above earth and returns a string describing this position.
+    Uses this Geocoding API: https://www.opencagedata.com/ as implemented in the RAW Labs library https://github.com/raw-labs/lib/tree/main/1/public/open-notify.org
+    Uses ISS position API: https://www.open-notify.org/ as implemented in the RAW Labs library https://github.com/raw-labs/lib/tree/main/1/public/opencagedata.com
+    See associated blog post: http://raw-labs.com/blog/api-integration-where-is-the-iss/
   tags:
     - ISS
+  termsOfService: https://raw-labs.com/terms-of-use/
+  author: RAW Labs
+  contact:
+    name: Georges Lagardère
+    url: https://www.raw-labs.com/
+    email: georges@raw-labs.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0
 security:
   public: true
