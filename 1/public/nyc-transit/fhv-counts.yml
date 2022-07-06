@@ -15,4 +15,4 @@ format: json
 security:
   public: true
 computeClass: normal
-enabled: true
+enabled: false
