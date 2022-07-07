@@ -15,9 +15,29 @@ query_str(twitterNameList: string nullable := null, keywordList: string nullable
     + IF keywordList is null THEN "" ELSE "(" 
     + mkstring(split(keywordList,",")," OR ")
     + IF keywordList is null THEN "" ELSE ")" 
-}
+};
 
-recent_tweets( twitterNameList: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
+recent_tweets( twitterName: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
+  // return a simple record, with author and tweet text as a collection
+  tweets:= 
+    select text
+    from 
+      get_tweets_search_recent( 
+        client_id:= secret("twitter.com_clientId"),
+        client_secret:= secret("twitter.com_clientSecret"),
+        query:= query_str(twitterName,keywordList) ,
+        max_results:= maxResults,
+        `tweet.fields`:="text"
+      ).data;
+
+  (
+    author: twitterName,
+    tweets: tweets
+  )
+};
+
+recent_tweets_expanded( twitterNameList: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
+  // return a more complete twitter structure
   get_tweets_search_recent( 
         client_id:= secret("twitter.com_clientId"),
         client_secret:= secret("twitter.com_clientSecret"),
@@ -27,7 +47,7 @@ recent_tweets( twitterNameList: string := "", keywordList: string nullable := nu
         expansions:= "author_id",
         `user.fields`:="username,name,id"
       )
-}
+};
 
 heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
   // use wikipedia to retrieve twitter accounts from heads of government
@@ -41,6 +61,6 @@ heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
 
   // iterate through the twitter accounts to query using the keywords     
   SELECT
-    recent_tweets( twittername,keywords)
+    recent_tweets_expanded( twittername,keywords)
   FROM twittername IN twitterAccounts
-}
+};
