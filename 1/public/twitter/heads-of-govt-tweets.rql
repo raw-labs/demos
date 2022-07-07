@@ -1,0 +1,18 @@
+FROM `github://raw-labs/demos/1/public/twitter/recent-tweets.rql`
+  IMPORT recent_tweets_expanded;
+
+heads_of_govt_tweets( countries:string, keywords:string :="" ) := {
+  // use wikipedia to retrieve twitter accounts from heads of government
+  // parameters:
+  //   countries: comma delimited list accepted
+  //   keywords: comma delimited list accepted
+  twitterAccounts := SELECT DISTINCT twittername
+      FROM READ("https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government")
+      WHERE twittername is not null
+      AND countryLabel in split(countries,",");
+
+  // iterate through the twitter accounts to query using the keywords     
+  SELECT
+    recent_tweets_expanded( twittername,keywords)
+  FROM twittername IN twitterAccounts
+};
