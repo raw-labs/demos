@@ -1,0 +1,17 @@
+// use google's natural language API
+
+FROM `github://raw-labs/lib/1/public/google.com/language.rql`
+     IMPORT analyze_entity_sentiment;
+
+analyze_sentiment ( input: record(author: string, tweets: collection(string nullable) nullable) ) := {
+
+  SELECT  input.author,
+          t as tweet,
+          analyze_entity_sentiment( 
+            key:= secret("language.google.com"), 
+            content:= replace(t,"\"","'"), // tweets have double quotes, so replace
+            type:="PLAIN_TEXT"
+          ) as analysis
+  FROM input.tweets t
+
+};
