@@ -1,0 +1,38 @@
+// import basic twitter functions 
+FROM `github://raw-labs/lib/1/public/twitter.com/twitter.rql`
+  IMPORT get_tweets_search_recent
+FROM `github://raw-labs/lib/1/public/twitter.com/utilities.rql`
+  IMPORT query_str;
+
+recent_tweets( twitterName: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
+  // return a simple record, with author and tweet text as a collection
+  tweets:= 
+    select text
+    from 
+      get_tweets_search_recent( 
+        client_id:= secret("twitter.com_clientId"),
+        client_secret:= secret("twitter.com_clientSecret"),
+        query:= query_str(twitterName,keywordList) ,
+        max_results:= maxResults,
+        `tweet.fields`:="text"
+      ).data;
+
+  (
+    author: twitterName,
+    tweets: tweets
+  )
+};
+
+recent_tweets_expanded( twitterNameList: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
+  // return a more complete twitter structure
+  get_tweets_search_recent( 
+        client_id:= secret("twitter.com_clientId"),
+        client_secret:= secret("twitter.com_clientSecret"),
+        query:= query_str(twitterNameList,keywordList) ,
+        max_results:= maxResults,
+        `tweet.fields`:="id,text,geo,created_at,entities,author_id,in_reply_to_user_id,referenced_tweets",
+        expansions:= "author_id",
+        `user.fields`:="username,name,id"
+      )
+};
+

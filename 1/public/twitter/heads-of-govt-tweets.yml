@@ -1,7 +1,7 @@
 raw: 0.9
 endpoint: GET
 code: rql
-codeFile: queries.rql
+codeFile: heads-of-govt-tweets.rql
 format: json
 computeClass: normal
 enabled: true
