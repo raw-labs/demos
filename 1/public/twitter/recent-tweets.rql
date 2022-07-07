@@ -4,7 +4,7 @@ FROM `github://raw-labs/lib/1/public/twitter.com/twitter.rql`
 FROM `github://raw-labs/lib/1/public/twitter.com/utilities.rql`
   IMPORT query_str;
 
-recent_tweets( twitterName: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
+recent_tweets( twitterNameList: string := "", keywordList: string nullable := null ,maxResults: int := 100 ) := {
   // return a simple record, with author and tweet text as a collection
   tweets:= 
     select text
@@ -12,7 +12,7 @@ recent_tweets( twitterName: string := "", keywordList: string nullable := null ,
       get_tweets_search_recent( 
         client_id:= secret("twitter.com_clientId"),
         client_secret:= secret("twitter.com_clientSecret"),
-        query:= query_str(twitterName,keywordList) ,
+        query:= query_str(twitterNameList,keywordList) ,
         max_results:= maxResults,
         `tweet.fields`:="text"
       ).data;
