@@ -2,7 +2,7 @@
 raw: 0.9
 endpoint: GET
 code: rql
-codeFile: queries.rql
+codeFile: recent-tweets.rql
 format: json
 computeClass: normal
 enabled: true
@@ -16,7 +16,6 @@ metadata:
     - twitter
     - news
   termsOfService: https://raw-labs.com/terms-of-use/
-  author: Jeremy Posner
   contact:
     name: RAW Labs Support
     url: https://discuss.raw-labs.com/
@@ -28,11 +27,3 @@ metadata:
 security:
   public: true
 refreshSeconds: 600
-tests:
-  - name: SingleTwitterAccount
-    description: tests a single account
-    arguments:
-      - key: twitterNameList
-        value: "BorisJohnson"
-      - key: keywordList
-        value: "ukraine"
