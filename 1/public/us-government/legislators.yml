@@ -10,11 +10,20 @@ cacheSizeMB: 10
 computeLimitSeconds: 20
 declaration: legislators
 metadata:
-  title: Legislators of the United States
-  description: search by type, party and state - returns only 10 for a demo
+  title: Current Legislators of the United States
+  description: Search current legislators, can filter by type, party and state (optional)
   tags:
     - government
     - USA
+  termsOfService: https://raw-labs.com/terms-of-use/
+  contact:
+    name: RAW Labs Support
+    url: https://discuss.raw-labs.com/
+    email: support@raw-labs.com
+  license:
+    name: Apache v2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0
 security:
   public: true
-refreshSeconds: 60
+refreshSeconds: 3600

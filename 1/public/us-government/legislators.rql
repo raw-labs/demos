@@ -5,7 +5,6 @@ WHERE
   l.state like state AND
   l.type like type AND
   l.party like party
-LIMIT 10
 };
 
 // typealias, this one reading only the first 13 colunms of the file
@@ -46,7 +45,7 @@ male_to_female_party(party: string nullable :="%", type: string nullable := "%")
   FROM 
     summary() as s
   WHERE
-    s.party like party AND
+    s.party like party 
     s.type like type
   GROUP BY 
     s.party as party, 

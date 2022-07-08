@@ -1,0 +1,29 @@
+FROM `github://raw-labs/demos/1/public/twitter/recent-tweets.rql`
+     IMPORT recent_tweets;
+FROM `github://raw-labs/demos/1/public/twitter/tweet-sentiment.rql`
+     IMPORT analyze_sentiment;
+
+
+legislators_tweets_sentiment ( state: string, type: string:= "dem,sen", party: string:="Democrat,Republican,Independent" ) := {
+
+  // run the sentiment analysis on tweets of legislators
+
+  // require a state or list of states : "CA,NY,NJ"
+  // type and party are optional
+
+    SELECT 
+      l.full_name, 
+      l.state, 
+      l.party, 
+      l.type as house, 
+      analyze_sentiment (recent_tweets(l.twitter)) as tweets
+    FROM 
+      READ("https://theunitedstates.io/congress-legislators/legislators-current.csv", cache:=interval "10 days") l
+    WHERE
+      l.state in split(state,",") AND
+      l.type in split(type,",") AND
+      l.party in split(party,",")
+
+};
+
+
