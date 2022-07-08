@@ -45,7 +45,7 @@ male_to_female_party(party: string nullable :="%", type: string nullable := "%")
   FROM 
     summary() as s
   WHERE
-    s.party like party 
+    s.party like party AND
     s.type like type
   GROUP BY 
     s.party as party, 
