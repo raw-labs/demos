@@ -4,7 +4,7 @@ FROM `github://raw-labs/demos/1/public/twitter/tweet-sentiment.rql`
      IMPORT analyze_sentiment;
 
 
-legislators_tweets_sentiment ( state: string, type: string:= "rep,sen", party: string:="Democrat,Republican,Independent", keywordList: string nullable ) := {
+legislators_tweets_sentiment ( state: string, type: string:= "rep,sen", party: string:="Democrat,Republican,Independent", keywordList: string nullable:= null ) := {
 
   // run the sentiment analysis on tweets of legislators
 
