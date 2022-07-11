@@ -11,12 +11,7 @@ computeLimitSeconds: 30
 declaration: legislators_tweets_sentiment
 metadata:
   title: Sentiment Analysis from Legislators' Recent Tweets.
-  description: Returns Recent tweets from Twitter, and runs Google Sentiment Analysis on the content of those tweets.\
-   Output structure is the raw form from Googles Language API\
-   Source is Current Legislators, mandatory paramter for filter is the state (or list of states e.g. "CA,NY,FL").\
-   Party (Democrat, Republican, Independent) is optional. Defaults to all\
-   Type (House) is optional. sen = Senate, rep = Representatives. Defaults to all\
-   KeywordList is optional, is a comma-separated set of phrases to search in Tweets.
+  description: Returns Recent tweets from Twitter, and runs Google Sentiment Analysis on the content of those tweets. Output structure is the raw form from Googles Language API.  Source is Current Legislators, mandatory paramter for filter is the state (or list of states e.g. "CA,NY,FL"). Party (Democrat, Republican, Independent) is optional. Defaults to all. Type (House) is optional. sen = Senate, rep = Representatives. Defaults to all.  KeywordList is optional, is a comma-separated set of phrases to search in Tweets.
   tags:
     - government
     - usa
