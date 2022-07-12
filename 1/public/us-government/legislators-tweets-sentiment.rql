@@ -1,0 +1,18 @@
+FROM `github://raw-labs/demos/1/public/twitter/recent-tweets.rql`
+  IMPORT recent_tweets;
+FROM `github://raw-labs/demos/1/public/twitter/tweet-sentiment.rql`
+  IMPORT analyze_sentiment;
+
+legislators_tweets_sentiment ( state: string, type: string:= "rep,sen", party: string:="Democrat,Republican,Independent",keywordList: string nullable:= null) := {
+SELECT 
+  l.full_name,
+  l.state,
+  l.party,
+  l.type as house,
+  analyze_sentiment(recent_tweets(l.twitter, keywordList)) as tweets
+FROM READ("https://theunitedstates.io/congress-legislators/legislators-current.csv") l
+WHERE
+  l.state in split(state,",") AND
+  l.type in split(type,",") AND
+  l.party in split(party,",")
+};
