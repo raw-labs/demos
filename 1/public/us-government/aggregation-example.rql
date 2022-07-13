@@ -1,0 +1,20 @@
+results := READ ("https://api.raw-labs.com/examples/1/public/us-government/legislators-tweets-sentiment?state=CA&keywordList=job,jobs,employment")
+
+select 
+    state,
+    party,
+    count(*) as num_tweets,    
+    avg(e.avg_score) as avg_score,
+    avg(e.avg_magnitude) as avg_magnitude
+from results r, r.tweets t, 
+    (select 
+        avg(sentiment.magnitude) as avg_magnitude,
+        avg(sentiment.score) as avg_score
+    from  t.analysis.entities
+    where 
+      not(sentiment.magnitude BETWEEN -0.25 AND 0.25) AND 
+      not(sentiment.score BETWEEN -0.25 AND 0.25) )
+    as e  
+group by 
+    r.state as state,
+    r.party as party
