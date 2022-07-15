@@ -6,7 +6,7 @@ codeFile: legislators-tweets-sentiment.rql
 format: json
 computeClass: normal
 enabled: true
-cacheSizeMB: 20
+cacheSizeMB: 50
 computeLimitSeconds: 30
 declaration: legislators_tweets_sentiment
 metadata:
@@ -36,4 +36,4 @@ metadata:
   version: 1.0
 security:
   public: true
-refreshSeconds: 3600
+refreshSeconds: 86400

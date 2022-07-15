@@ -7,7 +7,7 @@ format: json
 computeClass: normal
 enabled: true
 cacheSizeMB: 10
-computeLimitSeconds: 20
+computeLimitSeconds: 30
 declaration: male_to_female_states
 metadata:
   title: Ratio of Male to Female Legislators for a set of States
@@ -26,7 +26,7 @@ metadata:
   version: 1.0
 security:
   public: true
-refreshSeconds: 60
+refreshSeconds: 86400
 tests:
   - name: test1
     description: "first test, just a list of states"

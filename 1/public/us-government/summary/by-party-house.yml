@@ -6,7 +6,7 @@ format: json
 computeClass: normal
 enabled: true
 cacheSizeMB: 10
-computeLimitSeconds: 20
+computeLimitSeconds: 30
 declaration: male_to_female_party
 metadata:
   title: Ratio of Male to Female Legislators by Party and House(Type) of the United States
@@ -25,4 +25,4 @@ metadata:
   version: 1.0
 security:
   public: true
-refreshSeconds: 60
+refreshSeconds: 86400
