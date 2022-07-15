@@ -18,6 +18,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [RSS news analysis](#rss-news-analysis)
 * [Wikipedia](#wikipedia)
 * [Emissions](#emissions)
+* [Twitter](#twitter)
 * [US government](#us-government)
 
 Read our Blogs and Tutorials, many of which are relevant to these examples:
@@ -134,16 +135,38 @@ https://api.raw-labs.com/examples/1/public/wikipedia/heads-of-government
 **US vs Global CO2 Emissions, by Year**<br>
 https://api.raw-labs.com/examples/1/public/emissions/us-vs-global-co2
 
+
+## [Twitter](./1/public/twitter)
+
+**Recent Tweets**
+   Returns the last X tweets from a number of twitter accounts, optionally can use keywords to filter on
+
+https://api.raw-labs.com/examples/1/public/twitter/recent-tweets?twitterName=BorisJohnson<br>
+https://api.raw-labs.com/examples/1/public/twitter/recent-tweets?twitterName=POTUS&keywordList=job,jobs,economy,employment
+
+**Heads of Government Tweets**
+    Uses Country and Head of Government information queried from Wikipedia, to find the Twitter accounts - then returns the Recent Tweets from those leaders
+    
+https://api.raw-labs.com/examples/1/public/twitter/heads-of-govt-tweets?countries=France,Germany,Ukraine,United%20Kingdom
+
 ## [US Government](./1/public/us-government)
   
   Free open data from https://theunitedstates.io - simple queries used for our [video tutorials](https://raw-labs.com/library/type/videos/)
 
 **US Legislators (current)**
 
-  optional parameters include type, state, party
+  List of current US Legislators - optional parameters to filter include type, state, party
   
   https://api.raw-labs.com/examples/1/public/us-government/legislators - returns all<br>
   https://api.raw-labs.com/examples/1/public/us-government/legislators?state=CA&type=rep&party=Democrat - Californian, Democrats in House of Representatives
+
+**Sentiment Analysis on Tweets from US Legislators**
+
+  Returns Recent tweets from Twitter, and runs Google Sentiment Analysis on the content of those tweets. 
+  Output structure is the raw form from Googles Language API. 
+
+  https://api.raw-labs.com/examples/1/public/us-government/legislators-tweets-sentiment?state=CA&keywordList=job,jobs,employment,economy<br>
+  https://api.raw-labs.com/examples/1/public/us-government/legislators-tweets-sentiment?state=NY,NJ&type=sen
   
 **Summaries (current & historical)**
   
