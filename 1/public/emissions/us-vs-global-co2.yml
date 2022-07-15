@@ -14,6 +14,15 @@ metadata:
   tags:
     - emissions
     - environment
+  termsOfService: https://raw-labs.com/terms-of-use/
+  contact:
+    name: RAW Labs Support
+    url: https://discuss.raw-labs.com/
+    email: support@raw-labs.com
+  license:
+    name: Apache v2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0
 security:
   public: true
 refreshSeconds: 864000
