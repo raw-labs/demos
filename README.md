@@ -173,6 +173,6 @@ https://api.raw-labs.com/examples/1/public/twitter/heads-of-govt-tweets?countrie
   summaries of male to female legislators across all current and historical data. 
   These are good examples of union'ing two data structures, creating a summary function as a re-usable intermediate dataset.
   
-  https://api.raw-labs.com/examples/1/public/us-government/summary/by-state?states_list=CA,NV
+  https://api.raw-labs.com/examples/1/public/us-government/summary/by-state?states_list=CA,NV<br>
   https://api.raw-labs.com/examples/1/public/us-government/summary/by-party-house?party=Democrat
   
