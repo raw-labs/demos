@@ -10,7 +10,6 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 
 * [Movies](#movies)
 * [Olympic Games](#olympic-games)
-* [Sitemap](#sitemap)
 * [ISS](#iss)
 * [Weather](#weather)
 * [Value at Risk](#value-at-risk)
@@ -48,13 +47,6 @@ Medals per athlete (there's a [video](https://www.youtube.com/watch?v=zgBW5kHK-V
 
 Gold medals per country<p>https://api.raw-labs.com/examples/1/public/olympic-games/country-gold-medals?country_name=Germany
 
-## [Sitemap](./1/public/sitemap)
-  
-Retrieve last updated web pages from a website sitemap:
-
-https://api.raw-labs.com/examples/1/public/sitemap/recentpages?website=https://virgingalactic.com
- 
-  
 ## [ISS](./1/public/ISS)
   
 Example showing simple API integration, joining two APIs to produce a third
