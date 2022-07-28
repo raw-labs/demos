@@ -171,7 +171,7 @@ https://api.raw-labs.com/examples/1/public/twitter/heads-of-govt-tweets?countrie
   
 ## [SEO](./1/public/SEO)
   
-  ## Historical Search Volume for Google Searches:
+**Historical Search Volume for Google Searches:**
 
   Endpoint returns Historical Searches for Keywords on Google, by Month.
     
