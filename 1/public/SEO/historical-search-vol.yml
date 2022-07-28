@@ -41,10 +41,10 @@ tests:
     arguments: 
       - key: keywords
         value: "tesla"
-      - key: language_code
-        value: "en"
       - key: location_code
         value: 2840
+      - key: language_code
+        value: "en"
   - name: test2
     description: " mulitiple keywords, location name and language code supplied"
     arguments: 
