@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://cdn.raw-labs.com/endpoint-schemaV0.9.json
 raw: 0.9
 endpoint: GET
 code: rql
@@ -38,6 +39,13 @@ security:
   public: true
 refreshSeconds: 3600
 tests:
+  - name: test1
+    description: "simple test, one keyword and language code supplied"
+    arguments: 
+      - key: keywords
+        value: "tesla"
+      - key: language_code
+        value: "en"
   - name: test2
     description: " mulitiple keywords, location name and language code supplied"
     arguments: 
@@ -47,6 +55,15 @@ tests:
         value: "United Kingdom"
       - key: language_code
         value: "en"
+  - name: test3
+    description: "keyword, location code and language name supplied"
+    arguments: 
+      - key: keywords
+        value: "tesla,bmw"
+      - key: location_code
+        value: "2840"
+      - key: language_name
+        value: "English"
   - name: test4
     description: "location name and language name supplied"
     arguments: 
@@ -56,3 +73,14 @@ tests:
         value: "France"
       - key: language_name
         value: "French"
+  - name: test5
+    description: "include serp true"
+    arguments: 
+      - key: keywords
+        value: "tesla,bmw"
+      - key: location_name
+        value: "France"
+      - key: language_name
+        value: "French"
+      - key: include_serp_info
+        value: "true"
