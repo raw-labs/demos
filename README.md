@@ -19,6 +19,7 @@ Comments and suggestions are welcome: feel free to file GitHub Issues or email u
 * [Emissions](#emissions)
 * [Twitter](#twitter)
 * [US government](#us-government)
+* [SEO](#SEO)
 
 Read our Blogs and Tutorials, many of which are relevant to these examples:
 https://www.raw-labs.com/blog
@@ -168,3 +169,14 @@ https://api.raw-labs.com/examples/1/public/twitter/heads-of-govt-tweets?countrie
   https://api.raw-labs.com/examples/1/public/us-government/summary/by-state?states_list=CA,NV<br>
   https://api.raw-labs.com/examples/1/public/us-government/summary/by-party-house?party=Democrat
   
+## [SEO](./1/public/SEO)
+  
+  ## Historical Search Volume for Google Searches:
+
+  Endpoint returns Historical Searches for Keywords on Google, by Month.
+    
+  Note this API uses DataForSEO as a source API, see: https://docs.dataforseo.com/v3/keywords_data/google_ads/search_volume/live/ for more details
+     
+  https://api.raw-labs.com/examples/1/public/SEO/historical-search-vol?keywords=tesla,bmw&language_code=en&location_name=United%20States
+
+
