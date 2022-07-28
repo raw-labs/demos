@@ -54,14 +54,3 @@ tests:
         value: "France"
       - key: language_name
         value: "French"
-  - name: test5
-    description: "include serp true"
-    arguments: 
-      - key: keywords
-        value: "tesla,bmw"
-      - key: location_name
-        value: "France"
-      - key: language_name
-        value: "French"
-      - key: include_serp_info
-        value: true
