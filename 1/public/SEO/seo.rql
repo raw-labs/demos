@@ -2,17 +2,17 @@ FROM `github://raw-labs/lib/1/public/dataforseo.com/query.rql`
     IMPORT historical_search_volume;
 
 search_vol_hist(
-    key: string,
     keywords: string, 
     location_name: string nullable := null,
     location_code: int nullable := null,
     language_name: string nullable := null,
     language_code: string nullable := null,
-    include_serp_info: bool:=false
+    include_serp_info: bool nullable :=false
 ) := {
 
+  // pick up the key, and pass through to the dataforseo shim
   historical_search_volume( 
-    key:=key, 
+    key:=secret("dataforseo.com"), 
     keywords:=keywords,
     location_name:=location_name,
     location_code:=location_code,

@@ -9,8 +9,16 @@ cacheSizeMB: 10
 computeLimitSeconds: 10
 declaration: search_vol_hist
 metadata:
-  title: Return the Historical Search Volume for Keywords, using location, language. 
-  description: Optional SERP features. Uses the DataForSEO API
+  title: Return the Historical Search Volume from Google Searches
+  description: |+
+   Parameters:
+    - keywords: a list of comma-separated keywords, i.e. "tesla,bmw" (Required)
+    - language_code: uses the iso standard, i.e. "en" (one of this or language_name is required)
+    - language_name:  i.e. "French" (one of this or language_code is required)
+    - location_code: uses the values from dataforseo.com, i.e. 2840 is United States (one of this or location_name is required)
+    - location_name:  i.e. "United States" (one of this or location_code is required) 
+    - include_serp_info: defaults to false, if true will include the SERP info results
+    Note this API uses DataForSEO API
   tags:
     - seo
     - dataforseo
@@ -27,3 +35,51 @@ metadata:
 security:
   public: true
 refreshSeconds: 3600
+tests:
+  - name: test1
+    description: "simple test, one keyword and language code supplied"
+    arguments: 
+      - key: keywords
+        value: "tesla"
+      - key: language_code
+        value: "en"
+      - key: location_code
+        value: 2840
+  - name: test2
+    description: " mulitiple keywords, location name and language code supplied"
+    arguments: 
+      - key: keywords
+        value: "tesla,bmw"
+      - key: location_name
+        value: "United Kingdom"
+      - key: language_code
+        value: "en"
+  - name: test3
+    description: "keyword, location code and language name supplied"
+    arguments: 
+      - key: keywords
+        value: "tesla,bmw"
+      - key: location_code
+        value: 2840
+      - key: language_name
+        value: "English"
+  - name: test4
+    description: "location name and language name supplied"
+    arguments: 
+      - key: keywords
+        value: "tesla,bmw"
+      - key: location_name
+        value: "France"
+      - key: language_name
+        value: "French"
+  - name: test5
+    description: "include serp true"
+    arguments: 
+      - key: keywords
+        value: "tesla,bmw"
+      - key: location_name
+        value: "France"
+      - key: language_name
+        value: "French"
+      - key: include_serp_info
+        value: true
