@@ -9,8 +9,10 @@ cacheSizeMB: 10
 computeLimitSeconds: 10
 declaration: search_vol_hist
 metadata:
-  title: Return the Historical Search Volume from Google Searches
+  title: Historical Search Volume for Google Searches
   description: |+
+   Endpoint returns Historical Searches for Keywords on Google, by Month.
+   
    Parameters:
     - keywords: a list of comma-separated keywords, i.e. "tesla,bmw" (Required)
     - language_code: uses the iso standard, i.e. "en" (one of this or language_name is required)
